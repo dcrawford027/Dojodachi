@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Dojodachi";
+}
+
+<div class="container" style="padding: 50px 200px;">
+    <div class="row">
+        <div class="col-3">
+            <p>Happiness: @ViewBag.Happiness</p>
+        </div>
+
+        <div class="col-3">
+            <p>Fullness: @ViewBag.Fullness</p>
+        </div>
+
+        <div class="col-3">
+            <p>Energy: @ViewBag.Energy</p>
+        </div>
+
+        <div class="col-3">
+            <p>Meals: @ViewBag.Meals</p>
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <p>@ViewBag.Message</p>
+    </div>
+
+    @if (ViewBag.Happiness >= 100 && ViewBag.Fullness >= 100 && ViewBag.Energy >= 100)
+    {
+        <partial name="ButtonPartial" view-data="ViewData"></partial>
+    }
+
+    else if (ViewBag.Fullness == 0 || ViewBag.Happiness == 0)
+    {
+        <partial name="ButtonPartial" view-data="ViewData"></partial>
+    }
+
+    else
+    {
+        <div class="row">
+            <div class="col-3">
+                <form action="/feed" method="post">
+                    <button type="submit" class="btn btn-info">Feed</button>
+                </form>
+            </div>
+
+            <div class="col-3">
+                <form action="/play" method="post">
+                    <button type="submit" class="btn btn-info">Play</button>
+                </form>
+            </div>
+
+            <div class="col-3">
+                <form action="/work" method="post">
+                    <button type="submit" class="btn btn-info">Work</button>
+                </form>
+            </div>
+
+            <div class="col-3">
+                <form action="/sleep" method="post">
+                    <button type="submit" class="btn btn-info">Sleep</button>
+                </form>
+            </div>
+        </div>
+    }
+</div>
